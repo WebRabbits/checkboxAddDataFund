@@ -1,0 +1,1523 @@
+<body>
+<div id="page-wrapper" class="gray-bg" style="min-height: 876px">
+  <div class="navbar-container-sticky">
+    <nav
+      style=""
+      id="WelcomeNav"
+      class="navbar navbar-fixed-top fun-navbar"
+      role="navigation"
+    >
+      <div>
+        <button
+          class="fun-btn-burger"
+          id="NavBarBtn"
+          onclick="javascript:setNavBarCockie()"
+          title="Скрыть меню"
+        ></button>
+      </div>
+      <div class="nav nav-buttons">
+        <div class="nav-buttons__left">
+          <div class="fun-nav-today">
+            <span id="WelcomeDateLabel">Сегодня:</span>
+            <span id="WelcomeDate" class="text-highlight"
+              >3 июня 2024 г.</span
+            >
+          </div>
+          <div class="fun-nav-fundisttime">
+            <span id="WelcomeTimeLabel">&nbsp;Время UTC:</span>
+            <span id="WelcomeTime" class="text-highlight">18:28:49</span>
+          </div>
+        </div>
+        <div class="nav-buttons__right">
+          <div class="fun-nav-username">
+            <span id="WelcomeLevel" class="hidden-xs"
+              >Администратор:</span
+            >
+            <span id="CurrentLogin" class="text-highlight"
+              >roman_admin</span
+            >
+          </div>
+          <div class="balance fun-nav-balance">
+            <span id="WelcomeBalanceLabel">баланс:</span>
+            <span class="text-highlight"
+              ><span id="WelcomeBalance">1000000.00</span> EUR</span
+            >
+          </div>
+          <div class="nav-buttons-lang">
+            <div class="fun-lang-select">
+              <select
+                id="lang_select"
+                class="form-control select2-hidden-accessible"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <option value="en">English</option>
+                <option value="ru" selected="">Русский</option>
+                <option value="tr">Türkçe</option>
+                <option value="de">Deutsch</option>
+                <option value="cn">简体中文</option>
+                <option value="ko">한국어</option>
+                <option value="ja">日本語</option>
+                <option value="pt-br" [:pt-bractive:]="">
+                  Português do Brasil
+                </option></select
+              ><span
+                class="select2 select2-container select2-container--default"
+                dir="ltr"
+                style="width: 100%"
+                ><span class="selection"
+                  ><span
+                    class="select2-selection select2-selection--single"
+                    role="combobox"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabindex="0"
+                    aria-labelledby="select2-lang_select-container"
+                    ><span
+                      class="select2-selection__rendered"
+                      id="select2-lang_select-container"
+                      title="Русский"
+                      >Русский</span
+                    ><span
+                      class="select2-selection__arrow"
+                      role="presentation"
+                      ><b role="presentation"></b></span></span></span
+                ><span class="dropdown-wrapper" aria-hidden="true"></span
+              ></span>
+            </div>
+            <div class="fun-nav-logout">
+                <i class="fa fa-lg fa-sign-out"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <style type="text/css">
+    .bootstrap-datetimepicker-widget .timepicker table td {
+      padding: 0px;
+    }
+    .bootstrap-datetimepicker-widget .datepicker {
+      padding-left: 15px;
+    }
+    .highlight {
+      background: #e8ff07;
+    }
+  </style>
+  <div class="fun-page-header fun-page-header--default">
+    <h2 id="PageTitle" class="fun-page-header__title">
+      Платежные запросы
+    </h2>
+  </div>
+  <div class="payment-requests animated fadeInRight" id="Right">
+    <div>
+      <form
+        id="FilterForm"
+        action="https://test.fundist.org/ru/Support/PaymentRequests/Find"
+      >
+        <div id="Filter" class="fun-filters-wrapper__paymentrequests">
+          <div class="fun-filters-wrapper__field">
+            <select
+              name="PaySystem"
+              tabindex="-1"
+              class="select2-hidden-accessible"
+              aria-hidden="true"
+            >
+              <option value="0">Платёжная система</option>
+              <option value="764">Zotapay</option>
+              <option value="1354">Zimpler</option>
+              <option value="895">XpateNew</option>
+              <option value="561">Xpate</option>
+              <option value="1378">Xanpay</option>
+              <option value="1240">Wyzia ETO</option>
+              <option value="1237">Wyzia</option>
+              <option value="740">Wonderlandpay</option>
+              <option value="1040">WithdrawAutodeposit</option>
+              <option value="275">Wirecard2</option>
+              <option value="32">Wirecard</option>
+              <option value="1762">Wirecapital1</option>
+              <option value="25">Wire transfer</option>
+              <option value="278">WinPay</option>
+              <option value="2885">WebPayment NGN Withdraw</option>
+              <option value="2882">WebPayment NGN Deposit</option>
+              <option value="1862">WebPayment</option>
+              <option value="8">Webmoney</option>
+              <option value="2117">VPag</option>
+              <option value="2570">Voucher</option>
+              <option value="1438">Volt</option>
+              <option value="29">Visa/Mastercard</option>
+              <option value="1441">VegaWallet</option>
+              <option value="2321">Vasu USDMOCK-001 USD</option>
+              <option value="1874">Vasu</option>
+              <option value="2795">Utorg SPEI</option>
+              <option value="2819">Utorg Skrill Second</option>
+              <option value="2768">Utorg Skrill</option>
+              <option value="2774">Utorg RapidTransfer</option>
+              <option value="2810">Utorg Przelewy24</option>
+              <option value="2798">Utorg PIX</option>
+              <option value="2789">Utorg Paysafecard</option>
+              <option value="2807">Utorg PagoEfectivo</option>
+              <option value="2771">Utorg Neteller</option>
+              <option value="2816">Utorg Mistercash</option>
+              <option value="2813">Utorg MACH</option>
+              <option value="2804">Utorg Latam Online bank</option>
+              <option value="2792">Utorg Latam Cash</option>
+              <option value="2801">Utorg Khipu</option>
+              <option value="2831">Utorg Giropay</option>
+              <option value="2777">Utorg BLIK</option>
+              <option value="2474">Utorg</option>
+              <option value="281">UAH Card</option>
+              <option value="1357">TrustPayments</option>
+              <option value="531">Trustly (via Skrill)</option>
+              <option value="668">Trustly</option>
+              <option value="2330">TopPay</option>
+              <option value="973">TigerPay</option>
+              <option value="865">TigerGateway</option>
+              <option value="2687">Test_SG_SBP_out_RUB</option>
+              <option value="2684">Test_SG_SBP_In_RUB</option>
+              <option value="2744">Test_SG_PIX_out_BRL</option>
+              <option value="2741">Test_SG_PIX_In_BRL</option>
+              <option value="2708">Test_SG_Papara_out_TRY</option>
+              <option value="2696">Test_SG_Papara_in_TRY</option>
+              <option value="2714">Test_SG_PaparaPool_out_TRY</option>
+              <option value="2702">Test_SG_PaparaPool_in_TRY</option>
+              <option value="2690">Test_SG_P2P_out_RUB</option>
+              <option value="2693">Test_SG_P2P_In_RUB</option>
+              <option value="2732">Test_SG_Out_NGN</option>
+              <option value="2738">Test_SG_Online_Banking_Out_ZAR</option>
+              <option value="2735">Test_SG_Online_Banking_In_ZAR</option>
+              <option value="2750">Test_SG_Multibanco_in</option>
+              <option value="2723">
+                Test_SG_MobileMone_KENYA_Out_KES
+              </option>
+              <option value="2717">
+                Test_SG_MobileMoney_KENYA_In_KES
+              </option>
+              <option value="2681">Test_SG_cards_trusted_In_RUB</option>
+              <option value="2720">Test_SG_Cards_KENYA_In_KES</option>
+              <option value="2726">Test_SG_Cards_In_NGN</option>
+              <option value="2711">Test_SG_BankTransfer_out_TRY</option>
+              <option value="2729">Test_SG_BankTransfer_In_NGN</option>
+              <option value="2699">Test_SG_BankTransferP2P_in_TRY</option>
+              <option value="537">TestSystem123</option>
+              <option value="136">TestSystem</option>
+              <option value="1165">Swiftpay</option>
+              <option value="2336">Sure Pay 2</option>
+              <option value="1924">Sure Pay</option>
+              <option value="1140">Sticpay crypto</option>
+              <option value="868">Sticpay</option>
+              <option value="1381">StarCreditCard</option>
+              <option value="2705">Spoynt Bank Transfer NGN</option>
+              <option value="2465">Spoynt #514508</option>
+              <option value="1504">Spoynt</option>
+              <option value="1552">Spoynt</option>
+              <option value="2582">Spicy</option>
+              <option value="234">Skrill2</option>
+              <option value="19">Skrill</option>
+              <option value="2660">SimplePay - Parolapara</option>
+              <option value="2657">SimplePay - Papara</option>
+              <option value="2663">SimplePay - Express Havale</option>
+              <option value="2666">SimplePay - Cepbank</option>
+              <option value="2654">SimplePay - Bank</option>
+              <option value="2357">Settlepay Binance PayIn</option>
+              <option value="624">Settlepay</option>
+              <option value="2012">s1234</option>
+              <option value="686">Rupee NetBanking</option>
+              <option value="689">Rupee COD</option>
+              <option value="1492">Runpay</option>
+              <option value="1246">Rubpay</option>
+              <option value="1537">Royal Pay Test2</option>
+              <option value="333">Royal pay</option>
+              <option value="781">RealDeposits</option>
+              <option value="1525">RBMPay Withdrawal Papara</option>
+              <option value="1522">RBMPay Withdrawal Bank</option>
+              <option value="1831">RBMPay Papara</option>
+              <option value="1519">RBMPay Crypto Withdrawal</option>
+              <option value="1865">RBMPay Bank</option>
+              <option value="629">RBMPay</option>
+              <option value="546">RBKMoney (direct)</option>
+              <option value="647">RBKMoney</option>
+              <option value="217">RapidTransfer Skrill</option>
+              <option value="1889">Quv</option>
+              <option value="1195">Qaicash</option>
+              <option value="1426">Praxis ZEC</option>
+              <option value="1399">Praxis XRP</option>
+              <option value="1405">Praxis USDT</option>
+              <option value="1414">Praxis USDC</option>
+              <option value="1417">Praxis TUSD</option>
+              <option value="1213">Praxis Payport</option>
+              <option value="1420">Praxis PAX</option>
+              <option value="1384">Praxis Mifinity</option>
+              <option value="1411">Praxis LTC</option>
+              <option value="1402">Praxis ETH</option>
+              <option value="1423">Praxis DASH</option>
+              <option value="1234">Praxis Cypix</option>
+              <option value="1994">Praxis Cashier</option>
+              <option value="1396">Praxis BTC</option>
+              <option value="1408">Praxis BCH</option>
+              <option value="772">Praxis</option>
+              <option value="1982">Pion</option>
+              <option value="552">Piastrix</option>
+              <option value="662">PerfectMoney</option>
+              <option value="293">Payznet</option>
+              <option value="755">Paywize</option>
+              <option value="677">PayTestVoid</option>
+              <option value="466">PayTestProConversionCurrency</option>
+              <option value="30">PayTestPro</option>
+              <option value="1252">PayTestNoInit</option>
+              <option value="31">PayTestDisabled</option>
+              <option value="108">PayTest Void</option>
+              <option value="1843">PaySage</option>
+              <option value="447">PaySafe Neteller</option>
+              <option value="1091">Payretailers</option>
+              <option value="1101">Paypound</option>
+              <option value="1486">Payport МИР</option>
+              <option value="2276">Payport TRY</option>
+              <option value="2402">Payport RUB</option>
+              <option value="2618">Payport KZT</option>
+              <option value="2285">Payport INR</option>
+              <option value="2282">Payport IDR</option>
+              <option value="2279">Payport AED</option>
+              <option value="1720">Payport (correct system)</option>
+              <option value="1219">Payport</option>
+              <option value="11">Paypal</option>
+              <option value="2153">PayOp Revolut Bank Transfer</option>
+              <option value="2156">PayOp N26</option>
+              <option value="540">PayOp</option>
+              <option value="2456">Payok Vietnam</option>
+              <option value="2453">Payok Turkey</option>
+              <option value="2450">Payok Thailand</option>
+              <option value="2447">Payok Indonesia</option>
+              <option value="2870">PayOk India</option>
+              <option value="2627">Payok Colombia</option>
+              <option value="2444">Payok Brazil</option>
+              <option value="1816">Payok</option>
+              <option value="502">Paymero quickpay</option>
+              <option value="504">Paymero qr</option>
+              <option value="498">Paymero bank-transfer</option>
+              <option value="653">Paymero</option>
+              <option value="1119">
+                PaymentIQCashier Directa24 Helper
+              </option>
+              <option value="450">PaymentIQ Zimpler</option>
+              <option value="473">PaymentIQ Xpate CreditCard</option>
+              <option value="269">PaymentIQ Skrill</option>
+              <option value="512">PaymentIQ RealDeposits</option>
+              <option value="692">PaymentIQ Pradexx Sofort</option>
+              <option value="603">PaymentIQ Pradexx Cards</option>
+              <option value="369">PaymentIQ Pradexx</option>
+              <option value="919">PaymentIQ Paramount Helper</option>
+              <option value="272">PaymentIQ Neteller</option>
+              <option value="441">PaymentIQ NetBanking</option>
+              <option value="510">PaymentIQ NeosurfVoucher</option>
+              <option value="402">PaymentIQ MuchBetter</option>
+              <option value="516">PaymentIQ MacroPay</option>
+              <option value="405">PaymentIQ Jeton</option>
+              <option value="384">PaymentIQ Jeton</option>
+              <option value="459">PaymentIQ interac withdrawal</option>
+              <option value="360">PaymentIQ interac</option>
+              <option value="408">PaymentIQ INOVAPAY Wallet</option>
+              <option value="393">PaymentIQ InovaPay Boleto</option>
+              <option value="850">PaymentIQ Impaya</option>
+              <option value="378">PaymentIQ EcoPayz</option>
+              <option value="570">PaymentIQ ECommPay CreditCard</option>
+              <option value="514">PaymentIQ Ecommpay</option>
+              <option value="366">PaymentIQ CashLib</option>
+              <option value="1049">
+                paymentiq cashier skrill helper
+              </option>
+              <option value="1909">Paymentiq Cashier RubinPay</option>
+              <option value="1028">PaymentIQ Cashier RD Helper 2</option>
+              <option value="1025">PaymentIQ Cashier RD Helper</option>
+              <option value="955">PaymentIQ Cashier Pradexx</option>
+              <option value="986">PaymentIQ Cashier Piastrix</option>
+              <option value="761">PaymentIQ Cashier PayRetailers</option>
+              <option value="1450">
+                PaymentIQ Cashier Payneteasy Helper
+              </option>
+              <option value="907">PaymentIQ Cashier Mifinity</option>
+              <option value="1777">PaymentIQ Cashier Luxon</option>
+              <option value="1642">
+                PaymentIQ Cashier Interkassa Helper
+              </option>
+              <option value="1068">
+                PaymentIQ Cashier Interac Payout
+              </option>
+              <option value="1065">
+                PaymentIQ Cashier Interac Helper
+              </option>
+              <option value="600">PaymentIQ Cashier Interac</option>
+              <option value="934">PaymentIQ Cashier Instadebit</option>
+              <option value="931">PaymentIQ Cashier iDebit</option>
+              <option value="522">PaymentIQ Cashier helper</option>
+              <option value="937">PaymentIQ Cashier Funanga</option>
+              <option value="1004">
+                PaymentIQ Cashier Drecta24 Payout
+              </option>
+              <option value="1001">
+                PaymentIQ Cashier Drecta24 Helper
+              </option>
+              <option value="998">PaymentIQ Cashier Directa24</option>
+              <option value="970">PaymentIQ Cashier CreditCard2</option>
+              <option value="769">PaymentIQ Cashier Creditcard</option>
+              <option value="916">PaymentIQ Cashier BankDeposit</option>
+              <option value="1768">PaymentIQ Cashier Bank</option>
+              <option value="1022">
+                PaymentIQ Cashier AstroPay1touch2
+              </option>
+              <option value="1016">
+                PaymentIQ Cashier AstroPay Card2
+              </option>
+              <option value="1013">
+                PaymentIQ Cashier AstroPay Card
+              </option>
+              <option value="1019">
+                PaymentIQ Cashier AstroPay 1touch
+              </option>
+              <option value="811">PaymentIQ Cashier</option>
+              <option value="363">PaymentIQ AstroPayCard</option>
+              <option value="423">PaymentIQ ASTROPAY</option>
+              <option value="2441">PaymentBoom SGD</option>
+              <option value="2396">PaymentBoom BRL</option>
+              <option value="1921">PayLollyBet</option>
+              <option value="1279">Payku</option>
+              <option value="214">Payhubz</option>
+              <option value="638">Paygate10</option>
+              <option value="111">Paydoo</option>
+              <option value="1534">PayCryptos USDT V2</option>
+              <option value="632">PayCryptos USDT (Tron)</option>
+              <option value="549">Paycryptos USDT</option>
+              <option value="731">PayCryptos Tron V2</option>
+              <option value="635">PayCryptos Tron</option>
+              <option value="2420">Paycryptos Tether v2 Duplicate</option>
+              <option value="1110">PayCryptos Tether V2</option>
+              <option value="1010">PayCryptos Tether (Tron) V2</option>
+              <option value="2429">Paycryptos Solana V2 Duplicate</option>
+              <option value="2408">PayCryptos Solana</option>
+              <option value="1585">PayCryptos SOL V2</option>
+              <option value="1453">Paycryptos SOL</option>
+              <option value="2432">PayCryptos Ripple V2 Duplicate</option>
+              <option value="859">PayCryptos Ripple V2</option>
+              <option value="856">PayCryptos Ripple</option>
+              <option value="1792">PayCryptos PWETH V2</option>
+              <option value="1789">PayCryptos PUSDT V2</option>
+              <option value="2426">
+                Paycryptos Polygon V2 duplicate
+              </option>
+              <option value="2405">Paycryptos Polygon V2</option>
+              <option value="1783">PayCryptos MATIC V2</option>
+              <option value="1906">PayCryptos MATIC V1</option>
+              <option value="2423">
+                PayCryptos Litecoin V2 Duplicate
+              </option>
+              <option value="588">PayCryptos Litecoin v2</option>
+              <option value="465">PayCryptos Litecoin (MaxCasino)</option>
+              <option value="114">PayCryptos Litecoin</option>
+              <option value="982">PayCryptos GDX</option>
+              <option value="2414">
+                PayCryptos Ethereum v2 Duplicate
+              </option>
+              <option value="591">PayCryptos Ethereum v2</option>
+              <option value="105">PayCryptos Ethereum</option>
+              <option value="979">PayCryptos EOS</option>
+              <option value="1059">PayCryptos Elrond V2</option>
+              <option value="1056">PayCryptos Elrond</option>
+              <option value="2417">
+                PayCryptos Dogecoin v2 Duplicate
+              </option>
+              <option value="1113">PayCryptos Dogecoin V2</option>
+              <option value="722">PayCryptos Dogecoin</option>
+              <option value="1991">PayCryptos BUSDT V2</option>
+              <option value="1037">PayCryptos BUSDT</option>
+              <option value="1477">PayCryptos BUSD V2</option>
+              <option value="1474">PayCryptos BUSD V1</option>
+              <option value="1034">PayCryptos BSETH</option>
+              <option value="1988">PayCryptos BNB V2</option>
+              <option value="1031">PayCryptos BNB</option>
+              <option value="594">PayCryptos BitcoinCash v2</option>
+              <option value="321">PayCryptos BitcoinCash</option>
+              <option value="2411">PayCryptos Bitcoin V2 Backup</option>
+              <option value="462">PayCryptos Bitcoin V2</option>
+              <option value="102">PayCryptos Bitcoin</option>
+              <option value="1483">PayCryptos BBUSD V2</option>
+              <option value="1480">PayCryptos BBUSD V1</option>
+              <option value="1690">PayCryptos AUSDT V2</option>
+              <option value="1684">PayCryptos AUSDT V1</option>
+              <option value="1813">PayCryptos AUSDT (Arbitrum) V1</option>
+              <option value="1687">PayCryptos AETH V2</option>
+              <option value="1681">PayCryptos AETH V1</option>
+              <option value="1810">PayCryptos AETH (Arbitrum) V2</option>
+              <option value="1180">Paycos Virtual Accounts</option>
+              <option value="1267">Paycos UzCard</option>
+              <option value="2219">Paycos TRY_Papara 112 Payout</option>
+              <option value="2216">
+                Paycos TRY_Bank_Transfer 112 Payin
+              </option>
+              <option value="1627">Paycos terminal</option>
+              <option value="2639">Paycos Symyco PSE pay-out</option>
+              <option value="2636">
+                Paycos Symyco Bank transfer(ARS) pay-out
+              </option>
+              <option value="2471">Paycos Symoco_PICPAY_payin</option>
+              <option value="2468">Paycos Symoco_Boleto_payin</option>
+              <option value="2633">Paycos Symoco SPEI pay-out</option>
+              <option value="2480">Paycos Symoco Deposit</option>
+              <option value="1997">Paycos Spicy</option>
+              <option value="2255">Paycos SG_Win24_№91_PHP</option>
+              <option value="2258">Paycos SG_Win24_№107_PHP</option>
+              <option value="2645">Paycos SBP Payout 2</option>
+              <option value="1859">Paycos SBP Payout</option>
+              <option value="1834">Paycos SBP</option>
+              <option value="1510">Paycos Pay-out EUR VISA #5.11</option>
+              <option value="1513">Paycos Pay-out EUR MC #5.11</option>
+              <option value="1390">
+                Paycos Online banking VND #13.2
+              </option>
+              <option value="1393">
+                Paycos Online banking MYR #13.3
+              </option>
+              <option value="1183">Paycos Online Banking</option>
+              <option value="2360">Paycos MXN Payout</option>
+              <option value="1877">Paycos Mobile Tele2</option>
+              <option value="1880">Paycos Mobile Kcell</option>
+              <option value="1883">Paycos Mobile Altel</option>
+              <option value="1886">Paycos Mobile Activ</option>
+              <option value="1432">Paycos Method King-asia VND</option>
+              <option value="1507">Paycos Method King-asia MYR</option>
+              <option value="2351">Paycos Magnum Payfix</option>
+              <option value="2348">Paycos Magnum Paybol</option>
+              <option value="2345">Paycos Magnum Papara</option>
+              <option value="2342">Paycos Magnum BankTransfer</option>
+              <option value="1630">
+                Paycos King-asia_Transact365_VND
+              </option>
+              <option value="1633">
+                Paycos King-asia_Transact365_IDR
+              </option>
+              <option value="1495">Paycos King-asia_RMpay_VND</option>
+              <option value="1588">
+                Paycos King-asia Online banking #36.1 (Ovo)
+              </option>
+              <option value="1591">
+                Paycos King-asia Online banking #36.1 (Dana)
+              </option>
+              <option value="1516">Paycos K3 Mobile commerce</option>
+              <option value="1243">Paycos Internet Banking</option>
+              <option value="2573">Paycos Getapay #10.3</option>
+              <option value="2498">Paycos Billine KZT</option>
+              <option value="1567">Paycos (Канал 79)</option>
+              <option value="1570">Paycos (Канал 10.4)</option>
+              <option value="983">Paycos</option>
+              <option value="2576">Payco</option>
+              <option value="1774">Paycenter</option>
+              <option value="2213">Paybrokers</option>
+              <option value="2246">PayAdmit</option>
+              <option value="1288">Pay4Fun Go</option>
+              <option value="2483">Pay4Fun Custom Pix key</option>
+              <option value="752">Pay4fun</option>
+              <option value="123">PastaBank (Non-3D Secure)</option>
+              <option value="120">PastaBank (3D Secure)</option>
+              <option value="1531">Pagsmile PIX</option>
+              <option value="1856">Pagsmile Ecuador</option>
+              <option value="2006">Pagsmile Brazil (pt)</option>
+              <option value="1315">Pagsmile Brazil</option>
+              <option value="1125">Pagsmile</option>
+              <option value="1177">Pago</option>
+              <option value="1369">P2P SBP RUB #10.6 депозиты</option>
+              <option value="1372">P2P RUB #56.2 депозиты</option>
+              <option value="1375">P2P Qiwi_Yoomoney#56</option>
+              <option value="1366">
+                P2P New Traffic RUB pay-in #10.4 депозиты
+              </option>
+              <option value="1771">Oriental Wallet</option>
+              <option value="1947">Orbital</option>
+              <option value="135">OrangePay</option>
+              <option value="1297">Oobit</option>
+              <option value="765">Onramper</option>
+              <option value="2435">OneWallet</option>
+              <option value="1074">Octopayz</option>
+              <option value="1636">NummusPay</option>
+              <option value="1819">NowPayments</option>
+              <option value="1134">NodaPay</option>
+              <option value="245">Neteller2</option>
+              <option value="2621">Neteller (via Skrill)</option>
+              <option value="22">Neteller</option>
+              <option value="494">Neosurf</option>
+              <option value="169">NeoSerf</option>
+              <option value="1915">Munzen invoice</option>
+              <option value="2228">Munzen channel</option>
+              <option value="2852">MultiPay Popypara</option>
+              <option value="2159">MultiPay PEP</option>
+              <option value="1759">Multipay Paycell</option>
+              <option value="2849">MultiPay Paybol</option>
+              <option value="2846">MultiPay Parazula</option>
+              <option value="2855">MultiPay Paralopara</option>
+              <option value="2858">MultiPay Papel</option>
+              <option value="2861">MultiPay Papara</option>
+              <option value="2162">MultiPay Mefete</option>
+              <option value="2165">MultiPay Hayhay</option>
+              <option value="2864">MultiPay Bankpay</option>
+              <option value="1149">MultiPay</option>
+              <option value="2579">Muchbetter</option>
+              <option value="2387">MPay qr</option>
+              <option value="2390">MPay popy</option>
+              <option value="2384">MPay pepwallet</option>
+              <option value="2375">MPay payfix</option>
+              <option value="2369">MPay papara</option>
+              <option value="2381">MPay minihavale</option>
+              <option value="2378">MPay mefete</option>
+              <option value="2366">MPay eft</option>
+              <option value="2372">MPay cc</option>
+              <option value="1615">MovenPay Papara Withdrawal</option>
+              <option value="1618">
+                MovenPay Bank Transfer Withdrawal
+              </option>
+              <option value="883">MovenPay</option>
+              <option value="1360">Moonpay</option>
+              <option value="2249">Monetix VouWallet</option>
+              <option value="1444">Monetix Banks of Thailand</option>
+              <option value="1447">Monetix Banks of Japan</option>
+              <option value="1189">Monetix</option>
+              <option value="34">Moneta.ru Yandex</option>
+              <option value="35">Moneta.ru Qiwi</option>
+              <option value="33">Moneta.ru</option>
+              <option value="1387">Mobipay24</option>
+              <option value="2486">MKbank</option>
+              <option value="2324">MK Bank</option>
+              <option value="2171">Mifinity Pay Any Bank</option>
+              <option value="1303">MiFinity PAB</option>
+              <option value="805">MiFinity eWallet</option>
+              <option value="1300">MiFinity acct2acct</option>
+              <option value="2120">Match2Pay</option>
+              <option value="820">Manual Papara Karibubet</option>
+              <option value="913">Manual Papara Crypto</option>
+              <option value="518">Manual Papara</option>
+              <option value="823">Manual Crypto withdrawal</option>
+              <option value="886">Manual Bank Withdrawal v2</option>
+              <option value="817">Manual Bank Withdrawal</option>
+              <option value="799">Maldopay Rpnpay Withdraw 2081</option>
+              <option value="796">Maldopay Rpnpay 2080</option>
+              <option value="196">Maldopay QR REF DEP (2025)</option>
+              <option value="208">Maldopay PAYKASA WHDW (2016)</option>
+              <option value="184">Maldopay PAYKASA DEP (2001)</option>
+              <option value="1918">
+                Maldopay PayFix Withdraw (2079)
+              </option>
+              <option value="351">Maldopay PaparaPay (2059)</option>
+              <option value="342">Maldopay Mkarekod DEP (2051)</option>
+              <option value="787">Maldopay MEFETE Withdraw 2095</option>
+              <option value="784">Maldopay MEFETE Deposit 2093</option>
+              <option value="205">
+                Maldopay JETON-WALLET WHDW (2017)
+              </option>
+              <option value="178">
+                Maldopay JETON-WALLET DEP (2014)
+              </option>
+              <option value="793">Maldopay INR Bank Withdraw 2084</option>
+              <option value="790">Maldopay INR Bank Deposit 2082</option>
+              <option value="190">Maldopay CUBITS DEP (2004)</option>
+              <option value="202">Maldopay COMMUNITY DEP (2034)</option>
+              <option value="175">Maldopay COINIFY DEP (2026)</option>
+              <option value="348">Maldopay CMT Cuzdan (2070)</option>
+              <option value="193">Maldopay CHECKOUT DEP (2031)</option>
+              <option value="665">Maldopay CEPBANK DEPOSIT (2002)</option>
+              <option value="181">Maldopay CEPBANK DEP (2002)</option>
+              <option value="314">Maldopay BANKING WDW (2012)</option>
+              <option value="199">Maldopay BANKING DEP (2036)</option>
+              <option value="2678">
+                Maldopay Bank Withdraw 2 (2012)
+              </option>
+              <option value="172">Maldopay ASTROPAY DEP (2005)</option>
+              <option value="573">
+                Maldopay ANINDA PAPARA DEP (2045)
+              </option>
+              <option value="354">
+                Maldopay ANINDA PAPARA DEP (2044)
+              </option>
+              <option value="612">Maldopay Aninda Papara (2040)</option>
+              <option value="597">Maksipara</option>
+              <option value="558">MacroPay direct</option>
+              <option value="644">MacroPay</option>
+              <option value="525">Luqapay</option>
+              <option value="1657">Lunu</option>
+              <option value="1309">LondonHavale</option>
+              <option value="2759">LaFinteca</option>
+              <option value="1088">Kyzfx</option>
+              <option value="1459">Kvitum</option>
+              <option value="2504">KoraPay</option>
+              <option value="961">Kauri USDT</option>
+              <option value="766">Kauri Piastrix Card</option>
+              <option value="958">Kauri LTC</option>
+              <option value="925">Kauri INSTADEBIT test</option>
+              <option value="922">Kauri iDebit test</option>
+              <option value="964">Kauri ETH</option>
+              <option value="680">Kauri</option>
+              <option value="1871">JPay</option>
+              <option value="1231">Jokerpapara</option>
+              <option value="299">JetPapara</option>
+              <option value="938">Jeton Cash</option>
+              <option value="126">Jeton</option>
+              <option value="1462">iWallet</option>
+              <option value="889">Isx</option>
+              <option value="941">Ipnpayment</option>
+              <option value="2174">Inwizo</option>
+              <option value="1582">Interkassa indupi</option>
+              <option value="1579">Interkassa indpaytm</option>
+              <option value="1576">Interkassa indimps</option>
+              <option value="1573">Interkassa indfphonepe</option>
+              <option value="1985">Interkassa indbanking</option>
+              <option value="1456">Interkassa Hidden SCI mode</option>
+              <option value="1249">Interkassa</option>
+              <option value="1912">Interac (direct) Duplicate</option>
+              <option value="606">Interac (direct) ACH Withdrawal</option>
+              <option value="543">Interac (direct)</option>
+              <option value="659">Interac</option>
+              <option value="1540">Inpay2 LV+EUR+INSTANT SEPA</option>
+              <option value="1546">Inpay2 BR+EURO+INTERNATIONAL</option>
+              <option value="1543">Inpay2 AU+AUD+LOCAL</option>
+              <option value="1435">Inpay2</option>
+              <option value="497">Inpay Withdraw Duplicate</option>
+              <option value="491">Inpay Withdraw (BRL)</option>
+              <option value="237">Inpay Withdraw</option>
+              <option value="1900">Inpay New NZ+NZD+LOCAL</option>
+              <option value="1897">Inpay New AU+AUD+LOCAL</option>
+              <option value="725">Inovapay wallet</option>
+              <option value="728">Inovapay gateway</option>
+              <option value="1097">Inovapay (pix)</option>
+              <option value="952">Inovapay (PIX)</option>
+              <option value="1099">Inovapay (bradesco)</option>
+              <option value="1093">Inovapay (banco-do-brasil)</option>
+              <option value="485">Ingenico</option>
+              <option value="2507">Infipay VND</option>
+              <option value="2510">Infipay THB</option>
+              <option value="2516">Infipay SGD</option>
+              <option value="2519">Infipay PHP</option>
+              <option value="2513">Infipay MYR</option>
+              <option value="528">Ikajo</option>
+              <option value="220">ICEPAY SEPA</option>
+              <option value="163">IcePay</option>
+              <option value="650">HizliPapara</option>
+              <option value="1489">Help2Pay</option>
+              <option value="2477">Hello Clever Duplicate</option>
+              <option value="1846">Hello Clever</option>
+              <option value="1855">GuruPay</option>
+              <option value="826">GumballPay</option>
+              <option value="995">Gspay</option>
+              <option value="734">GlobalGate UAT</option>
+              <option value="641">GlobalGate</option>
+              <option value="1501">Genesis</option>
+              <option value="2615">Gateexpress</option>
+              <option value="242">Gamescoin</option>
+              <option value="2903">FXMB India</option>
+              <option value="2363">FXMB</option>
+              <option value="254">FunToPay QuickPay</option>
+              <option value="260">FunToPay P2P</option>
+              <option value="251">FunToPay BankPay</option>
+              <option value="257">FunToPay AliPay</option>
+              <option value="1801">FundistTest</option>
+              <option value="2261">Frontnode</option>
+              <option value="2672">Freepay Mobile WD</option>
+              <option value="2669">Freepay</option>
+              <option value="1225">Freekassa</option>
+              <option value="1549">Forta</option>
+              <option value="892">Fonepaisa</option>
+              <option value="2438">Flexify</option>
+              <option value="910">Fixturka</option>
+              <option value="2339">Fastpay</option>
+              <option value="1079">Facilero</option>
+              <option value="989">Ezeewallet</option>
+              <option value="695">EuPago Multibanco</option>
+              <option value="698">EuPago MBWay</option>
+              <option value="1137">EscaleraReal Withdrawals</option>
+              <option value="674">Emoneybet VISA</option>
+              <option value="39">Emoneybet</option>
+              <option value="992">EMerchantPay</option>
+              <option value="683">EcoVoucher</option>
+              <option value="139">EcoPayz</option>
+              <option value="749">Ecommpay2 UzCard</option>
+              <option value="49">Ecommpay Yandex</option>
+              <option value="70">Ecommpay Wire transfer</option>
+              <option value="97">Ecommpay Webmoney</option>
+              <option value="73">Ecommpay Skrill</option>
+              <option value="64">Ecommpay Qiwi</option>
+              <option value="79">Ecommpay PromSvyazBank</option>
+              <option value="85">Ecommpay Privat24</option>
+              <option value="100">Ecommpay PaySafecard</option>
+              <option value="88">Ecommpay Other Ukranian Banks</option>
+              <option value="94">
+                Ecommpay Other cash payment termi
+              </option>
+              <option value="61">Ecommpay Neteller</option>
+              <option value="82">Ecommpay LiqPay</option>
+              <option value="117">Ecommpay Interkassa</option>
+              <option value="58">Ecommpay Cards</option>
+              <option value="67">Ecommpay Boleto Bancario</option>
+              <option value="508">Ecommpay applepay</option>
+              <option value="76">Ecommpay Alfa-Click</option>
+              <option value="91">Ecommpay ADV Cash</option>
+              <option value="28">Ecommpay</option>
+              <option value="2909">Dragontech</option>
+              <option value="520">DirectBankPayIban</option>
+              <option value="618">DirectBankPayCustom</option>
+              <option value="211">DirectBankPay</option>
+              <option value="2546">Directa24 Western Union</option>
+              <option value="2531">Directa24 Webpay</option>
+              <option value="2186">Directa24 UPI</option>
+              <option value="2561">Directa24 Todito Cash</option>
+              <option value="2183">Directa24 Tigerpay</option>
+              <option value="2552">Directa24 Scotia</option>
+              <option value="1143">Directa24 Pix</option>
+              <option value="2525">Directa24 PicPay</option>
+              <option value="2543">Directa24 Paynet</option>
+              <option value="2534">Directa24 Pago Effectivo</option>
+              <option value="2528">Directa24 OXXO</option>
+              <option value="2867">Directa24 Mpesa</option>
+              <option value="2537">Directa24 Interbank</option>
+              <option value="2567">Directa24 Diners Club</option>
+              <option value="2522">Directa24 Boleto</option>
+              <option value="2540">Directa24 BCP</option>
+              <option value="2549">Directa24 BBVA Peru</option>
+              <option value="2555">Directa24 Banco Pichincha</option>
+              <option value="2558">Directa24 Banco Guayaquil</option>
+              <option value="2564">Directa24 American Express</option>
+              <option value="579">Directa24</option>
+              <option value="555">Direct Crypto</option>
+              <option value="2630">DGPay</option>
+              <option value="737">Daxchain</option>
+              <option value="2624">Dalapay</option>
+              <option value="2756">Customizable Withdrawal 3</option>
+              <option value="1555">Customizable Withdrawal 2</option>
+              <option value="976">Customizable Withdrawal</option>
+              <option value="1264">Customizable Deposits</option>
+              <option value="55">Cubits</option>
+              <option value="2753">Cryptopay BackButton</option>
+              <option value="2492">Cryptopay</option>
+              <option value="1964">CPLPay Withdrawal Bank</option>
+              <option value="1958">CPLPay Papara</option>
+              <option value="1961">CPLPay Crypto</option>
+              <option value="1955">CPLPay Bank</option>
+              <option value="814">Constantpos</option>
+              <option value="2495">Commercegate PIX</option>
+              <option value="2651">Commercegate Boleto</option>
+              <option value="453">Coinygram</option>
+              <option value="2675">Coinspaid USDC</option>
+              <option value="2306">Coinspaid Tether TRC 20</option>
+              <option value="2294">Coinspaid Tether ERC 20</option>
+              <option value="2297">Coinspaid Ripple</option>
+              <option value="2312">Coinspaid Litecoin</option>
+              <option value="2291">Coinspaid Ethereum</option>
+              <option value="2315">Coinspaid Dogecoin</option>
+              <option value="2318">Coinspaid Cardano</option>
+              <option value="2333">Coinspaid BTC</option>
+              <option value="2648">Coinspaid BNB-BSC</option>
+              <option value="1282">Coinspaid AlphaPo</option>
+              <option value="829">Coinspaid</option>
+              <option value="534">CoinPayments</option>
+              <option value="758">Coinbase</option>
+              <option value="1561">Citizen</option>
+              <option value="1976">Chillstock</option>
+              <option value="2066">Cashforo Visa 2</option>
+              <option value="2099">Cashforo Skrill RapidTransfer</option>
+              <option value="2033">Cashforo Skrill PaySafeCard</option>
+              <option value="1324">Cashforo Skrill</option>
+              <option value="1342">Cashforo PickSellPay</option>
+              <option value="1621">Cashforo PayID</option>
+              <option value="1336">Cashforo Paydo</option>
+              <option value="2039">CashForo Noda UniCredit</option>
+              <option value="2042">CashForo Noda Sparda</option>
+              <option value="2036">CashForo Noda Revolut</option>
+              <option value="2096">Cashforo Neteller(skrill)</option>
+              <option value="2021">CashForo MiFinity Paysera</option>
+              <option value="2018">CashForo MiFinity MyBank</option>
+              <option value="2024">CashForo MiFinity Multibanco</option>
+              <option value="2027">CashForo MiFinity</option>
+              <option value="2069">Cashforo Mastercard 2</option>
+              <option value="1330">Cashforo Jeton</option>
+              <option value="1327">Cashforo Interac</option>
+              <option value="2030">CashForo Creditcard Paydo</option>
+              <option value="2105">
+                Cashforo Credit/Debit Card Astropay
+              </option>
+              <option value="1321">Cashforo Credit Card Visa</option>
+              <option value="1318">Cashforo Credit Card MC</option>
+              <option value="2060">Cashforo Coinspaid USDT TRC20</option>
+              <option value="2138">Cashforo Coinspaid USDT ERC20</option>
+              <option value="2144">Cashforo Coinspaid Litecoin</option>
+              <option value="2141">Cashforo Coinspaid Ethereum</option>
+              <option value="2150">Cashforo Coinspaid BitcoinCash</option>
+              <option value="2147">Cashforo Coinspaid Bitcoin</option>
+              <option value="1348">Cashforo Coinspaid</option>
+              <option value="2045">Cashforo Coinbase USDT ERC20</option>
+              <option value="2051">Cashforo Coinbase Litecoin</option>
+              <option value="2048">Cashforo Coinbase Etherium</option>
+              <option value="2057">Cashforo Coinbase BitcoinCash</option>
+              <option value="2054">Cashforo Coinbase Bitcoin</option>
+              <option value="2015">Cashforo Cash2Code</option>
+              <option value="2093">CashForo BankTransfer Noda</option>
+              <option value="2063">CashForo Banco ripley AstroPay</option>
+              <option value="1333">Cashforo Astropay</option>
+              <option value="874">Cashforo</option>
+              <option value="2240">CashBulls</option>
+              <option value="311">Cardpay2</option>
+              <option value="46">CardPay v2</option>
+              <option value="671">CardPay</option>
+              <option value="2210">CapitalPay qr</option>
+              <option value="2837">CapitalPay PHP</option>
+              <option value="2135">CapitalPay direct</option>
+              <option value="2207">CapitalPay c2c</option>
+              <option value="1007">CapitalManagement</option>
+              <option value="1351">BtcBit</option>
+              <option value="2111">BLIK</option>
+              <option value="1107">BlackRabbit</option>
+              <option value="2873">Bitolo Mexico</option>
+              <option value="2876">Bitolo Argentina</option>
+              <option value="2399">Bitolo</option>
+              <option value="1285">Bitconce</option>
+              <option value="2600">Bit and Pay Token</option>
+              <option value="877">Binance USDC</option>
+              <option value="880">Binance Dai</option>
+              <option value="1291">BillLine</option>
+              <option value="743">BIA_Custom Coinbase</option>
+              <option value="2003">BetterBro Wthdrwls PIX</option>
+              <option value="1939">BetterBro USDT</option>
+              <option value="2252">BetterBro PIX TAX ID</option>
+              <option value="1930">BetterBro PIX</option>
+              <option value="1927">BetterBro BINANCE</option>
+              <option value="1837">BetterBro</option>
+              <option value="802">Bet2u</option>
+              <option value="1294">BeemPay</option>
+              <option value="1053">BeemCasino Card Withdrawal</option>
+              <option value="871">Beem Pay</option>
+              <option value="583">Bank Withdraw</option>
+              <option value="52">Bank Wire transfer</option>
+              <option value="284">Bank transfer</option>
+              <option value="901">Bank Demo</option>
+              <option value="2288">Auto0911</option>
+              <option value="567">AstroPayOneTouch (EU)</option>
+              <option value="1717">AstroPayOneTouch</option>
+              <option value="266">AstroPay Streamline</option>
+              <option value="2912">Astropay PIX</option>
+              <option value="1146">AstroPay OneTouch SDK</option>
+              <option value="564">AstroPay OneTouch</option>
+              <option value="263">AstroPay Card</option>
+              <option value="707">Aristotle Nguyen</option>
+              <option value="2000">Ari10</option>
+              <option value="1085">ApexPay</option>
+              <option value="248">APCOPay Zimpler</option>
+              <option value="1471">ApcoPay Xentum</option>
+              <option value="944">ApcoPay VIPP</option>
+              <option value="151">ApcoPay Sofort</option>
+              <option value="142">ApcoPay Purplepay</option>
+              <option value="148">ApcoPay Paysafecard</option>
+              <option value="302">ApcoPay Paykasa</option>
+              <option value="862">ApcoPay Octaviopay</option>
+              <option value="145">ApcoPay Neosurf</option>
+              <option value="615">ApcoPay MULTIBANCO</option>
+              <option value="2462">ApcoPay Muchbetter e-wallet</option>
+              <option value="947">Apcopay JNET</option>
+              <option value="2762">ApcoPay JapanAPI</option>
+              <option value="187">ApcoPay InPay</option>
+              <option value="305">ApcoPay InovaPay Wallet</option>
+              <option value="290">APCOPay INOVAPAY Boleto</option>
+              <option value="157">ApcoPay Ideal</option>
+              <option value="154">ApcoPay Giropay</option>
+              <option value="223">ApcoPay Flutterwave</option>
+              <option value="287">ApcoPay Cryptopay</option>
+              <option value="160">ApcoPay AstroPay</option>
+              <option value="132">ApcoPay</option>
+              <option value="1161">AnyMoney Litecoin</option>
+              <option value="1158">AnyMoney Ethereum</option>
+              <option value="1216">AnyMoney ERC-20</option>
+              <option value="1155">AnyMoney Bitcoin</option>
+              <option value="1062">AnyMoney</option>
+              <option value="1798">AnSpacePay</option>
+              <option value="2501">Aninda2</option>
+              <option value="308">Aninda Kredi Karti</option>
+              <option value="581">Aninda</option>
+              <option value="656">Airpay</option>
+              <option value="2273">Aifory</option>
+              <option value="576">AccentPay2 Monetix</option>
+              <option value="296">AccentPay2 EcoPayz</option>
+              <option value="229">AccentPay WM</option>
+              <option value="226">AccentPay Cards</option>
+              <option value="239">AccentPay 2 Yandex</option>
+              <option value="808">AccentPay 2 UzCard</option>
+              <option value="336">AccentPay 2 Qwi</option>
+              <option value="339">AccentPay 2 Mobile</option>
+              <option value="469">AccentPay 2 Cash2Code</option>
+              <option value="231">AccentPay 2 Cards</option>
+              <option value="1116">Aanaa</option>
+              <option value="1979">A1Havale</option>
+              <option value="853">4g12hs</option></select
+            ><span
+              class="select2 select2-container select2-container--default"
+              dir="ltr"
+              style="width: 100%"
+              ><span class="selection"
+                ><span
+                  class="select2-selection select2-selection--single"
+                  role="combobox"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  tabindex="0"
+                  aria-labelledby="select2-PaySystem-g6-container"
+                  ><span
+                    class="select2-selection__rendered"
+                    id="select2-PaySystem-g6-container"
+                    title="Платёжная система"
+                    >Платёжная система</span
+                  ><span
+                    class="select2-selection__arrow"
+                    role="presentation"
+                    ><b role="presentation"></b></span></span></span
+              ><span class="dropdown-wrapper" aria-hidden="true"></span
+            ></span>
+          </div>
+          <div
+            class="fun-filters-wrapper__field"
+            style="margin: 0px"
+            id="dateGroup"
+          >
+            <div
+              class="padding-left-0 padding-right-0 padding-bottom-0 padding-top-0"
+            >
+              <input
+                type="text"
+                class="form-control"
+                name="DateTime"
+                id="DateTime"
+                placeholder="Дата и время"
+                value="2024-06-03 15:01:57"
+              />
+            </div>
+            <div
+              class="padding-left-0 padding-right-0 padding-bottom-0 padding-top-0"
+            >
+              <button
+                id="fillNowButton"
+                type="button"
+                class="btn btn-white pull-right"
+                style="margin-top: 1px !important"
+                onclick="return fillNow()"
+                title="[2024-06-03 18:27:52]"
+              >
+                Now
+              </button>
+            </div>
+          </div>
+          <div class="fun-filters-wrapper__field">
+            <select
+              class="form-control select2-hidden-accessible"
+              name="TZ"
+              id="TZ"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <option value="Etc/GMT+12">UTC-12:00</option>
+              <option value="Etc/GMT+11">UTC-11:00</option>
+              <option value="Etc/GMT+10">UTC-10:00</option>
+              <option value="Etc/GMT+9">UTC-9:00</option>
+              <option value="Etc/GMT+8">UTC-8:00</option>
+              <option value="Etc/GMT+7">UTC-7:00</option>
+              <option value="Etc/GMT+6">UTC-6:00</option>
+              <option value="Etc/GMT+5">UTC-5:00</option>
+              <option value="Etc/GMT+4">UTC-4:00</option>
+              <option value="Etc/GMT+3">UTC-3:00</option>
+              <option value="Etc/GMT+2">UTC-2:00</option>
+              <option value="Etc/GMT+1">UTC-1:00</option>
+              <option value="UTC" selected="selected">UTC</option>
+              <option value="Etc/GMT-1">UTC+1:00</option>
+              <option value="Etc/GMT-2">UTC+2:00</option>
+              <option value="Etc/GMT-3">UTC+3:00</option>
+              <option value="Etc/GMT-4">UTC+4:00</option>
+              <option value="Etc/GMT-5">UTC+5:00</option>
+              <option value="Etc/GMT-6">UTC+6:00</option>
+              <option value="Etc/GMT-7">UTC+7:00</option>
+              <option value="Etc/GMT-8">UTC+8:00</option>
+              <option value="Etc/GMT-9">UTC+9:00</option>
+              <option value="Etc/GMT-10">UTC+10:00</option>
+              <option value="Etc/GMT-11">UTC+11:00</option>
+              <option value="Etc/GMT-12">UTC+12:00</option>
+              <option value="Etc/GMT-13">UTC+13:00</option>
+              <option value="Etc/GMT-14">UTC+14:00</option></select
+            ><span
+              class="select2 select2-container select2-container--default"
+              dir="ltr"
+              style="width: 100%"
+              ><span class="selection"
+                ><span
+                  class="select2-selection select2-selection--single"
+                  role="combobox"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  tabindex="0"
+                  aria-labelledby="select2-TZ-container"
+                  ><span
+                    class="select2-selection__rendered"
+                    id="select2-TZ-container"
+                    title="UTC"
+                    >UTC</span
+                  ><span
+                    class="select2-selection__arrow"
+                    role="presentation"
+                    ><b role="presentation"></b></span></span></span
+              ><span class="dropdown-wrapper" aria-hidden="true"></span
+            ></span>
+          </div>
+          <div class="fun-filters-wrapper__field">
+            <select
+              name="TimeDelta"
+              tabindex="-1"
+              class="select2-hidden-accessible"
+              aria-hidden="true"
+            >
+              <option value="5s" selected="selected">± 5s</option>
+              <option value="10s">± 10s</option>
+              <option value="2">± 2 mins</option>
+              <option value="5">± 5 mins</option>
+              <option value="10">± 10 mins</option>
+              <option value="20">± 20 mins</option>
+              <option value="p2">.. 2 mins</option>
+              <option value="p5">.. 5 mins</option>
+              <option value="p10">.. 10 mins</option>
+              <option value="p20">.. 20 mins</option>
+              <option value="p60">.. 60 mins</option>
+              <option value="p1440">.. 1440 mins</option></select
+            ><span
+              class="select2 select2-container select2-container--default"
+              dir="ltr"
+              style="width: 100%"
+              ><span class="selection"
+                ><span
+                  class="select2-selection select2-selection--single"
+                  role="combobox"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  tabindex="0"
+                  aria-labelledby="select2-TimeDelta-8n-container"
+                  ><span
+                    class="select2-selection__rendered"
+                    id="select2-TimeDelta-8n-container"
+                    title="± 2 mins"
+                    >± 2 mins</span
+                  ><span
+                    class="select2-selection__arrow"
+                    role="presentation"
+                    ><b role="presentation"></b></span></span></span
+              ><span class="dropdown-wrapper" aria-hidden="true"></span
+            ></span>
+          </div>
+          <div class="fun-filters-wrapper__field">
+            <input
+              type="text"
+              class="form-control"
+              name="IDUser"
+              id="IDUser"
+              placeholder="ID пользователя"
+            />
+          </div>
+          <div class="fun-filters-wrapper__field">
+            <input
+              type="text"
+              class="form-control"
+              name="Text"
+              id="Text"
+              placeholder="Текст запроса"
+              value="21.00"
+            />
+          </div>
+          <div class="fun-filters-wrapper__field">
+            <select
+              name="Type"
+              tabindex="-1"
+              class="select2-hidden-accessible"
+              aria-hidden="true"
+            >
+              <option value="req" selected="selected">В запросе</option>
+              <option value="resp">В ответе</option>
+              <option value="req_resp">В запросе/ответе</option></select
+            ><span
+              class="select2 select2-container select2-container--default"
+              dir="ltr"
+              style="width: 100%"
+              ><span class="selection"
+                ><span
+                  class="select2-selection select2-selection--single"
+                  role="combobox"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  tabindex="0"
+                  aria-labelledby="select2-Type-lr-container"
+                  ><span
+                    class="select2-selection__rendered"
+                    id="select2-Type-lr-container"
+                    title="В запросе/ответе"
+                    >В запросе/ответе</span
+                  ><span
+                    class="select2-selection__arrow"
+                    role="presentation"
+                    ><b role="presentation"></b></span></span></span
+              ><span class="dropdown-wrapper" aria-hidden="true"></span
+            ></span>
+          </div>
+          <div class="fun-filters-wrapper__field">
+            <button
+              id="ButtonFilter"
+              type="submit"
+              class="btn btn-default pull-right"
+            >
+              Найти
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="payment-requests__data">
+    <div class="row">
+      <div class="ibox-content">
+        <button
+          id="ShowSQLButton"
+          type="button"
+          class="hide-sql btn btn-white"
+          onclick="return showSQL(true)"
+        >
+          Показать SQL оператор
+        </button>
+        <button
+          id="HideSQLButton"
+          type="button"
+          class="show-sql btn btn-white m-b-sm"
+          onclick="return showSQL(false)"
+        >
+          Скрыть SQL оператор
+        </button>
+        <div id="SQLText" class="show-sql">
+          <code>
+            SELECT * FROM PaymentRequests WHERE req_datetime BETWEEN
+            "2024-06-03 14:59:57" AND "2024-06-03 15:03:57" AND (req_data
+            LIKE '%21.00%' OR req_response LIKE '%21.00%') LIMIT 200
+          </code>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ibox-content">
+        <button
+          id="ShowPRTableButton"
+          type="button"
+          class="hide-prtable btn btn-white"
+          onclick="return prTable(true)"
+          style="display: none"
+        >
+          Показать таблицу запросов
+        </button>
+        <button
+          id="HidePRTableButton"
+          type="button"
+          style=""
+          class="show-prtable btn btn-white"
+          onclick="return prTable(false)"
+        >
+          Скрыть таблицу запросов
+        </button>
+        <div class="padding-top-15">
+          <table
+            width="100%"
+            class="table table-bordered table-condensed table-striped show-prtable"
+            id="prTable"
+            style=""
+          >
+            <thead>
+              <tr>
+                <th name="col-ID" width="11%">
+                  <div>ID запроса</div>
+                  <div>Платёжная система</div>
+                  <div>Направление платежа</div>
+                </th>
+                <th name="col-Data" width="40%">Данные запроса</th>
+                <th name="col-Datetime" width="9%">
+                  <div>Дата запроса</div>
+                  <div>Время обработки</div>
+                </th>
+                <th name="col-Response" width="40%">Результат запроса</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="" id="16899494">
+                <td name="col-ID">
+                  16899494<br />
+                  Payport<br />
+                  Инициализация платежа
+                </td>
+                <td name="col-Data" style="overflow: scroll">
+                  <div class="word-break">
+                    {"URL":"ru/Api/1084555c34ac46f0d8d3356568f3e261/WLCAccount/Credit",
+                    "RequestHttpMethod":"GET",
+                    "RequestUri":"/ru/Api/1084555c34ac46f0d8d3356568f3e261/WLCAccount/Credit/?&amp;Login=9404&amp;Amount=<span
+                      class="highlight"
+                      >21.00</span
+                    >&amp;Currency=USD&amp;System=1219&amp;Wallet=&amp;WalletCurrency=&amp;Version=&amp;RedirectId=12625&amp;Additional%5Bessential_key%5D=79563210504&amp;Additional%5Badditional_essential_key%5D=15%3A54&amp;Additional%5BorigUrl%5D=test-devcasino.egamings.com&amp;Password=0a8908ae&amp;TID=test_0e18bb5d-a510-4cb8-b20f-79e960dc2a0a&amp;Hash=aa4297339f3339add026727711fedd66&amp;UserIP=188.130.240.79",
+                    "IDUser":"7146800", "IDApi":"1740", "IDMerchant":"",
+                    "Amount":"<span class="highlight">21.00</span>",
+                    "Additional":{"essential_key":"79563210504",
+                    "additional_essential_key":"15:54",
+                    "origUrl":"test-devcasino.egamings.com",
+                    "UserIP":"188.130.240.79", "RedirectId":"12625"},
+                    "UserAgent":"NO: HTTP_USER_AGENT", "RemotePort":"",
+                    "RemoteUser":"NO: REMOTE_USER", "HttpReferrer":"NO:
+                    HTTP_REFERER"}
+                  </div>
+                </td>
+                <td name="col-Datetime">
+                  2024-06-03 15:03:57 <br />
+                  (0.439606)
+                </td>
+                <td style="overflow: scroll" name="col-Response">
+                  <div class="word-break">
+                    1, ["redirect",
+                    "https://sandbox.p2p-transfer.live/payment/invoice/post/checkout/103276?signature=edf1721271fc858f67460bde8adc12424ac41efac158c86757ed7425bdfbc613"]
+                  </div>
+                </td>
+              </tr>
+              <tr class="" id="16899497">
+                <td name="col-ID">
+                  16899497<br />
+                  Payport<br />
+                  Запросы к платёжке
+                </td>
+                <td name="col-Data" style="overflow: scroll">
+                  <div class="word-break">
+                    sandbox.p2p-transfer.live/api/v5/invoice/get POST
+                    {"order_id":3427529, "amount":"<span class="highlight"
+                      >21.00</span
+                    >", "currency":"USD", "client_expense":0,
+                    "return_url":"https://test-devcasino.egamings.com?message=PAYMENT_PENDING&amp;amount=<span
+                      class="highlight"
+                      >21.00</span
+                    >&amp;tid=3427529&amp;RedirectId=12625",
+                    "response_url":"https://test-devcasino.egamings.com?message=PAYMENT_PENDING&amp;amount=<span
+                      class="highlight"
+                      >21.00</span
+                    >&amp;tid=3427529&amp;RedirectId=12625",
+                    "cancel_url":"https://test-devcasino.egamings.com?message=PAYMENT_FAIL&amp;amount=<span
+                      class="highlight"
+                      >21.00</span
+                    >&amp;tid=3427529&amp;RedirectId=12625",
+                    "server_url":"https://apitest.fundist.org/System/Payments/Return/Payport",
+                    "customer_id":"7146800", "locale":"ru",
+                    "currency2currency":true, "exact_currency":true,
+                    "filter_payment_system_types":["card_number"]}
+                  </div>
+                </td>
+                <td name="col-Datetime">
+                  2024-06-03 15:03:57 <br />
+                  (0.256175)
+                </td>
+                <td style="overflow: scroll" name="col-Response">
+                  <div class="word-break">
+                    200 OK
+                    {"url":"https://sandbox.p2p-transfer.live/payment/invoice/post/checkout/103276?signature=edf1721271fc858f67460bde8adc12424ac41efac158c86757ed7425bdfbc613",
+                    "merchant_id":207, "invoice_id":103276,
+                    "order_id":3427529, "amount":0, "amount_currency":21,
+                    "currency":"USD", "order_desc":null,
+                    "merchant_amount":0, "client_expense":0, "status":1}
+                  </div>
+                </td>
+              </tr>
+              <tr class="" id="16899499">
+                <td name="col-ID">
+                  16899499<br />
+                  Payport<br />
+                  Запросы к платёжке
+                </td>
+                <td name="col-Data" style="overflow: scroll">
+                  <div class="word-break">
+                    sandbox.p2p-transfer.live/api/v5/invoice/get POST
+                    {"order_id":3427529, "amount":"<span class="highlight"
+                      >21.00</span
+                    >", "currency":"USD", "client_expense":0,
+                    "return_url":"https://test-devcasino.egamings.com?message=PAYMENT_PENDING&amp;amount=<span
+                      class="highlight"
+                      >21.00</span
+                    >&amp;tid=3427529&amp;RedirectId=12625",
+                    "response_url":"https://test-devcasino.egamings.com?message=PAYMENT_PENDING&amp;amount=<span
+                      class="highlight"
+                      >21.00</span
+                    >&amp;tid=3427529&amp;RedirectId=12625",
+                    "cancel_url":"https://test-devcasino.egamings.com?message=PAYMENT_FAIL&amp;amount=<span
+                      class="highlight"
+                      >21.00</span
+                    >&amp;tid=3427529&amp;RedirectId=12625",
+                    "server_url":"https://apitest.fundist.org/System/Payments/Return/Payport",
+                    "customer_id":"7146800", "locale":"ru",
+                    "currency2currency":true, "exact_currency":true,
+                    "filter_payment_system_types":["card_number"]}
+                  </div>
+                </td>
+                <td name="col-Datetime">
+                  2024-06-03 15:03:57 <br />
+                  (0.256175)
+                </td>
+                <td style="overflow: scroll" name="col-Response">
+                  <div class="word-break">
+                    200 OK
+                    {"url":"https://sandbox.p2p-transfer.live/payment/invoice/post/checkout/103276?signature=edf1721271fc858f67460bde8adc12424ac41efac158c86757ed7425bdfbc613",
+                    "merchant_id":207, "invoice_id":103276,
+                    "order_id":3427529, "amount":0, "amount_currency":21,
+                    "currency":"USD", "order_desc":null,
+                    "merchant_amount":0, "client_expense":0, "status":1}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <script language="javascript" type="text/javascript">
+    var filters = [
+      {
+        url: '\/ru\/Support\/PaymentRequests\/Find',
+        DateTime: '2024-06-03 15:01:57',
+        TZ: 'UTC',
+        TimeDelta: '2',
+        Text: '21.00',
+        Type: 'req_resp',
+      },
+    ];
+    setFormFilters([
+      {
+        url: '\/ru\/Support\/PaymentRequests\/Find',
+        DateTime: '2024-06-03 15:01:57',
+        TZ: 'UTC',
+        TimeDelta: '2',
+        Text: '21.00',
+        Type: 'req_resp',
+      },
+    ]);
+
+    function fillNow() {
+      var now = new Date();
+      var now_s = now.toISOString();
+      now_s = now_s.slice(0, 19);
+      now_s = now_s.replace('T', ' ');
+
+      $('#DateTime').val(now_s);
+
+      return false;
+    }
+
+    function showSQL(f) {
+      if (!f) {
+        $('.show-sql').hide();
+        $('.hide-sql').show();
+      } else {
+        $('.hide-sql').hide();
+        $('.show-sql').show();
+      }
+
+      return false;
+    }
+
+    function prTable(f) {
+      if (f) {
+        $('.hide-prtable').hide();
+        $('.show-prtable').show();
+      } else {
+        $('.hide-prtable').show();
+        $('.show-prtable').hide();
+      }
+    }
+
+    function searchHighlight(text, container) {
+      switch (container) {
+        case 'req':
+          container = 'td[name="col-Data"]';
+          break;
+        case 'resp':
+          container = 'td[name="col-Response"]';
+          break;
+        case 'req_resp':
+          container = 'td[name="col-Data"],td[name="col-Response"]';
+          break;
+      }
+      if (text) {
+        $(container + '> div.word-break').each(function () {
+          var content = $(this).html();
+          var searchExpression = new RegExp(
+            text + '(?=[^<>]*(<|$))',
+            'ig'
+          );
+          var matches = content.match(searchExpression);
+          if (matches) {
+            $(this).html(
+              content.replace(searchExpression, function (match) {
+                return "<span class='highlight'>" + match + '</span>';
+              })
+            );
+          }
+        });
+      }
+    }
+
+    $(document).ready(function () {
+      $('#IDUser').inputmask('Regex', { regex: '^[0-9]*$' });
+      var settings = datetimepickerSettingsWithTime(
+        new Date(),
+        null,
+        true
+      );
+      settings.format = 'YYYY-MM-DD HH:mm:ss';
+      settings.sideBySide = true;
+      settings.keepOpen = true;
+      $('#DateTime').datetimepicker(settings);
+
+      searchHighlight(filters[0].Text ?? '', filters[0].Type);
+      searchHighlight(filters[0].IDUser ?? '', filters[0].Type);
+    });
+  </script>
+  <div class="footer fixed footer-desktop">
+    <small>Fundist ver.: test-20240603.1</small>,
+    <small>Funcore ver.: test-20240603.12</small>,
+    <small>Loyalty ver.: test-20240531.1</small><br />
+    <div id="ReleaseNotes">
+      <a
+        target="_blank"
+        class="text-link"
+        href="https://test.fundist.org/ru/ClientArea/ReleaseNotes"
+        >Release Notes</a
+      >
+    </div>
+    Copyright BROMSTON ASSOCIATES LTD © 2008–2024 Все права защищены
+  </div>
+  <div class="footer fixed footer-mobile" id="footer">
+    <div class="footer-arrow" id="fun-footer-arrow">
+      <img
+        src="./Платежные запросы1_files/arrow-down.svg"
+        alt=""
+        style="width: 15px; height: auto; margin: 0 auto"
+      />
+    </div>
+    <div id="footer-main" class="collapse">
+      <small>Fundist ver.: test-20240603.1</small>,
+      <small>Funcore ver.: test-20240603.12</small>,
+      <small>Loyalty ver.: test-20240531.1</small><br />
+      <div id="ReleaseNotes">
+        <a
+          target="_blank"
+          class="text-link"
+          href="https://test.fundist.org/ru/ClientArea/ReleaseNotes"
+          >Release Notes</a
+        >
+      </div>
+      Copyright BROMSTON ASSOCIATES LTD © 2008–2024 Все права защищены
+    </div>
+  </div>
+</div>
+
+<script src="2.js"></script>
+</body>
