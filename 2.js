@@ -1,19 +1,27 @@
 'use strict';
 
 // Get Element DOM
+//Получаем элемент <tbody> из DOM
 const tableQuery = document.querySelector(
   '.table.table-bordered.table-condensed.table-striped.show-prtable>tbody'
 );
-const paymentrequestDataBlock = document.querySelector(
-  '.payment-requests__data > .row'
-);
-// console.log(paymentrequestDataBlock);
-const paySystems = document.querySelector('select[name="PaySystem"]');
-console.log(paySystems);
 
+// const paymentrequestDataBlock = document.querySelector(
+//   '.payment-requests__data > .row'
+// );
+
+//Получаем элемент <select> списка всех платёжных систем
+const paySystems = document.querySelector('select[name="PaySystem"]');
+// console.log(paySystems);
+
+//Получаем все элементы <tr> из DOM
 const trIdBody = document.querySelectorAll('tbody>tr');
 
 // Render Logic
+const thColumn = document.createElement('th');
+thColumn.innerText = 'Select a request';
+document.querySelector('thead>tr').prepend(thColumn);
+
 for (const resultElem of tableQuery.children) {
   // console.log(trIdBody);
   const tdCheckbox = document.createElement('td');
@@ -37,7 +45,7 @@ const textareaResultDataQuery = document.createElement('textarea');
 textareaResultDataQuery.className = 'textarea-result-data-query';
 textareaResultDataQuery.style.width = '720px';
 textareaResultDataQuery.style.height = '190px';
-paymentrequestDataBlock.prepend(divTextarea);
+document.querySelector('.payment-requests__data > .row').prepend(divTextarea);
 divTextarea.prepend(textareaResultDataQuery);
 
 // Подготовка данных для работы с ними
@@ -85,7 +93,7 @@ function workCheckedElem(item, preDataProcessing) {
         el.splice(0, 1, true);
         if (el[0] === true) {
           //textareaResultDataQuery.innerHTML += `${el}\n\n`;
-          viewTextData();
+          preDataProcessing(el);
         }
       }
       // item.id == ind && item.value == el[1] ? el.splice(0, 1, true) : null;
@@ -99,10 +107,11 @@ function workCheckedElem(item, preDataProcessing) {
           textareaResultDataQuery.innerHTML = '';
           for (let i = 0; i < arrChecboxText.length; i++) {
             if (arrChecboxText[i][0] == true) {
+              const renderUpdateData = arrChecboxText[i].sort((a, b) => a > b);
               // textareaResultDataQuery.innerHTML += `${arrChecboxText[i].sort(
               //   (a, b) => a > b
               // )}\n\n`;
-              viewTextData();
+              preDataProcessing(renderUpdateData);
             }
           }
         }
@@ -111,18 +120,20 @@ function workCheckedElem(item, preDataProcessing) {
     });
   }
   // console.log(arrChecboxText);
-  preDataProcessing(arrChecboxText, viewTextData);
+  // preDataProcessing(arrChecboxText);
 }
 
-function preDataProcessing(arrChecboxText, viewTextData) {
-  let checkedElementArray = new Array();
-  arrChecboxText.forEach((el) => {
-    if (el[0] === true) {
-      checkedElementArray = el.map((elemChecked) => elemChecked);
-    }
-  });
+function preDataProcessing(arrChecboxTextElement) {
+  // let checkedElementArray = new Array();
+  // arrChecboxText.forEach((el) => {
+  //   if (el[0] === true) {
+  //     checkedElementArray.push(el);
+  //   }
+  // });
+  // console.log(checkedElementArray);
 
-  const [, colId, colRequest, colDatatime, colResponse] = checkedElementArray;
+  const [, colId, colRequest, colDatatime, colResponse] = arrChecboxTextElement;
+  console.log(arrChecboxTextElement);
 
   const colID = colId.split('\n').splice(0, 1).toString();
 
@@ -153,12 +164,13 @@ function viewTextData(
   colSpeedQuery,
   colResponse
 ) {
+  console.log(colDatatime.split('\n').splice(0, 1));
   const viewTextMap = new Map();
   viewTextMap
     .set('req_id', colID)
     .set('req_system_id', idPaySystem)
     .set('req_data', colRequest)
-    .set('req_datetime', colDatatime)
+    .set('req_datetime', colDatatime.split('\n').splice(0, 1).toString())
     .set('req_response', colResponse)
     .set('req_status', 'NULL')
     .set('req_rsptime', colSpeedQuery);
@@ -173,8 +185,8 @@ function viewTextData(
   req_rsptime: ${viewTextMap.get('req_rsptime')}
   `;
 
-  textareaResultDataQuery.innerHTML += `${viewText}`;
   console.log(viewText);
+  return (textareaResultDataQuery.innerHTML += `${viewText}`);
 }
 
 // mysql> SELECT * FROM PaymentRequests WHERE req_datetime BETWEEN "2024-06-03 15:06:45" AND "2024-06-03 15:10:45" AND (req_data LIKE '%3427826%' OR req_response LIKE '%3427826%') \G;
