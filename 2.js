@@ -45,8 +45,12 @@ const textareaResultDataQuery = document.createElement('textarea');
 textareaResultDataQuery.className = 'textarea-result-data-query';
 textareaResultDataQuery.style.width = '720px';
 textareaResultDataQuery.style.height = '190px';
+const btnCopy = document.createElement('button');
+btnCopy.className = 'btn-copy';
+btnCopy.innerText = 'Copy Result';
 document.querySelector('.payment-requests__data > .row').prepend(divTextarea);
 divTextarea.prepend(textareaResultDataQuery);
+divTextarea.append(btnCopy);
 
 // Подготовка данных для работы с ними
 const check = document.getElementsByClassName('inputCheck'); // Получем NodeList всех input элементов
@@ -81,6 +85,8 @@ console.log(arrChecboxText);
 Array.from(check).forEach((item) =>
   item.addEventListener('click', () => workCheckedElem(item, preDataProcessing))
 );
+
+btnCopy.addEventListener('click', copyResult);
 
 //&& item.value == el[1]
 // Функция с обработкой проставления/снятия чекбокса в input
@@ -123,7 +129,7 @@ function workCheckedElem(item, preDataProcessing) {
   // preDataProcessing(arrChecboxText);
 }
 
-function preDataProcessing(arrChecboxTextElement) {
+function preDataProcessing(arrChecboxTextElement, count) {
   // let checkedElementArray = new Array();
   // arrChecboxText.forEach((el) => {
   //   if (el[0] === true) {
@@ -152,7 +158,8 @@ function preDataProcessing(arrChecboxTextElement) {
     colRequest,
     colDatatime,
     colSpeedQuery,
-    colResponse
+    colResponse,
+    count
   );
 }
 
@@ -162,7 +169,8 @@ function viewTextData(
   colRequest,
   colDatatime,
   colSpeedQuery,
-  colResponse
+  colResponse,
+  count
 ) {
   console.log(colDatatime.split('\n').splice(0, 1));
   const viewTextMap = new Map();
@@ -187,6 +195,38 @@ function viewTextData(
 
   console.log(viewText);
   return (textareaResultDataQuery.innerHTML += `${viewText}`);
+}
+
+function copyResult() {
+  let textareaVal = textareaResultDataQuery.value;
+  console.log(textareaVal);
+  if (
+    textareaVal == '' &&
+    !textareaResultDataQuery.classList.contains('element-active-empty')
+  ) {
+    textareaResultDataQuery.classList.add('element-active-empty');
+    textareaResultDataQuery.style.padding = '10px';
+    textareaResultDataQuery.style.fontSize = '0.9rem';
+    // textareaResultDataQuery.innerText =
+    //   'Отметьте блоки с запросами для копирования';
+  }
+
+  if (textareaVal !== '') {
+    textareaResultDataQuery.classList.contains('element-active-empty') == true
+      ? textareaResultDataQuery.classList.remove('element-active-empty')
+      : textareaResultDataQuery.classList.add('element-active-done');
+
+    textareaResultDataQuery.classList.add('element-active-done');
+
+    navigator.clipboard.writeText(textareaVal).then((copyText) => {
+      if (copyText === undefined) {
+        btnCopy.value = 'Copied!';
+        setTimeout(() => {
+          btnCopy.value = 'Copy Result';
+        }, 1500);
+      }
+    });
+  }
 }
 
 // mysql> SELECT * FROM PaymentRequests WHERE req_datetime BETWEEN "2024-06-03 15:06:45" AND "2024-06-03 15:10:45" AND (req_data LIKE '%3427826%' OR req_response LIKE '%3427826%') \G;

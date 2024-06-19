@@ -1,0 +1,8 @@
+.containt-textarea-result-data-query {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.containt-textarea-result-data-query .btn-copy {
+}
