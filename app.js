@@ -22,6 +22,7 @@ for (const resultElem of tableQuery.children) {
   inputCheck.type = 'checkbox';
   inputCheck.value = '';
   inputCheck.id = '1';
+  inputCheck.style.cursor = 'pointer';
   resultElem.prepend(tdCheckbox);
   tdCheckbox.prepend(inputCheck);
 }
