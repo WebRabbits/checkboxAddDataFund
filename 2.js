@@ -1,5 +1,3 @@
-'use strict';
-
 //// Get Element DOM
 //Получаем элемент <tbody> из DOM
 const tableQuery = document.querySelector(
@@ -41,6 +39,7 @@ textareaResultDataQuery.className = 'textarea-result-data-query';
 textareaResultDataQuery.style.width = '720px';
 textareaResultDataQuery.style.height = '190px';
 textareaResultDataQuery.style.fontSize = '14px';
+textareaResultDataQuery.style.padding = '10px';
 
 const btnCopy = document.createElement('button');
 btnCopy.className = 'btn-copy';
@@ -63,11 +62,11 @@ notifyBlock.prepend(notifyText);
 //// Data preparation logic
 //Подготовка данных для работы с ними
 const check = document.getElementsByClassName('inputCheck'); // Получем NodeList всех input элементов
-console.log(check);
+// console.log(check);
 
 //Добавляем в input.value значение идетификатора из тега <tr> по каждому блоку запросов
 Array.from(check).forEach((elCheck, elInd) => {
-  console.log(elCheck);
+  // console.log(elCheck);
   for (const [key, val] of Object.entries(trIdBody)) {
     if (key == elInd) {
       elCheck.value = val.id;
@@ -138,16 +137,17 @@ function preDataProcessing(arrChecboxTextElement) {
   const [, colId, colRequest, colDatatime, colResponse] = arrChecboxTextElement;
   console.log(arrChecboxTextElement);
 
-  const colID = colId.split('\n').splice(0, 1).toString();
+  console.log(colDatatime);
+  const colID = colId.split('\n').splice(1, 1).toString();
 
   let idPaySystem;
   for (const res of paySystems) {
-    colId.split('\n').splice(1, 1).toString() == res.innerText
+    colId.split('\n').splice(2, 1).toString() == res.innerText
       ? (idPaySystem = res.value)
-      : undefined;
+      : null;
   }
-
-  const colSpeedQuery = colDatatime.split('\n').splice(1, 1).toString();
+  console.log(colDatatime.split(' ').splice(0, 2));
+  const colSpeedQuery = colDatatime.split(' ').splice(3, 1).toString();
 
   viewTextData(
     idPaySystem,
@@ -168,18 +168,21 @@ function viewTextData(
   colSpeedQuery,
   colResponse
 ) {
-  console.log(colDatatime.split('\n').splice(0, 1));
+  // console.log(colDatatime.split('\n').splice(0, 1));
   const viewTextMap = new Map();
   viewTextMap
     .set('req_id', colID)
-    .set('req_system_id', idPaySystem)
+    .set('req_system_id', idPaySystem == undefined ? 'NULL' : idPaySystem)
     .set('req_data', colRequest)
-    .set('req_datetime', colDatatime.split('\n').splice(0, 1).toString())
+    .set(
+      'req_datetime',
+      colDatatime.split(' ').splice(0, 2).toString().replace(',', ' ')
+    )
     .set('req_response', colResponse)
     .set('req_status', 'NULL')
     .set('req_rsptime', colSpeedQuery.substring(1, colSpeedQuery.length - 1));
 
-  let viewText = `  req_id: ${viewTextMap.get('req_id')}
+  let viewText = `req_id: ${viewTextMap.get('req_id')}
   req_system_id: ${viewTextMap.get('req_system_id')}
   req_data: ${viewTextMap.get('req_data')}
   req_datetime: ${viewTextMap.get('req_datetime')}
@@ -204,7 +207,7 @@ function copyResult() {
     textareaResultDataQuery.classList.remove('element-active-done');
     textareaResultDataQuery.classList.add('element-active-empty');
     textareaResultDataQuery.style.padding = '10px';
-    textareaResultDataQuery.style.fontSize = '0.9rem';
+    textareaResultDataQuery.style.fontSize = '14px';
     copyNotify(textareaVal);
   }
 
