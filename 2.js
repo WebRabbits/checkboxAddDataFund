@@ -146,8 +146,9 @@ function preDataProcessing(arrChecboxTextElement) {
       ? (idPaySystem = res.value)
       : null;
   }
-  console.log(colDatatime.split(' ').splice(0, 2));
+
   const colSpeedQuery = colDatatime.split(' ').splice(3, 1).toString();
+  // console.log(colDatatime.split(' ').splice(3, 1).toString()); - ПОСЛЕ ПРАВОК ЗАМЕНИТЬ НА ДАННОЕ ЗНАЧЕНИЕ
 
   viewTextData(
     idPaySystem,
@@ -172,7 +173,7 @@ function viewTextData(
   const viewTextMap = new Map();
   viewTextMap
     .set('req_id', colID)
-    .set('req_system_id', idPaySystem == undefined ? 'NULL' : idPaySystem)
+    .set('req_system_id', idPaySystem == undefined ? '0' : idPaySystem)
     .set('req_data', colRequest)
     .set(
       'req_datetime',
@@ -182,22 +183,24 @@ function viewTextData(
     .set('req_status', 'NULL')
     .set('req_rsptime', colSpeedQuery.substring(1, colSpeedQuery.length - 1));
 
-  let viewText = `req_id: ${viewTextMap.get('req_id')}
-  req_system_id: ${viewTextMap.get('req_system_id')}
-  req_data: ${viewTextMap.get('req_data')}
-  req_datetime: ${viewTextMap.get('req_datetime')}
-  req_response: ${viewTextMap.get('req_response')}
-  req_status: ${viewTextMap.get('req_status')}
-  req_rsptime: ${viewTextMap.get('req_rsptime')}\n
-  `;
+  let viewText = `******************************************************\nreq_id: ${viewTextMap.get(
+    'req_id'
+  )}\nreq_system_id: ${viewTextMap.get(
+    'req_system_id'
+  )}\nreq_data: ${viewTextMap.get('req_data')}\nreq_datetime: ${viewTextMap.get(
+    'req_datetime'
+  )}\nreq_response: ${viewTextMap.get(
+    'req_response'
+  )}\nreq_status: ${viewTextMap.get(
+    'req_status'
+  )}\nreq_rsptime: ${viewTextMap.get('req_rsptime')}\n`;
 
-  console.log(viewText);
   return (textareaResultDataQuery.innerHTML += `${viewText}`);
 }
 
 //Копируем результат из <textarea>
 function copyResult() {
-  let textareaVal = textareaResultDataQuery.value;
+  let textareaVal = textareaResultDataQuery.value.trim();
   console.log(textareaVal);
   if (
     (textareaVal == '' &&
