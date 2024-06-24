@@ -40,6 +40,7 @@ textareaResultDataQuery.style.width = '720px';
 textareaResultDataQuery.style.height = '190px';
 textareaResultDataQuery.style.fontSize = '14px';
 textareaResultDataQuery.style.padding = '10px';
+textareaResultDataQuery.style.marginBottom = '20px';
 
 const btnCopy = document.createElement('button');
 btnCopy.className = 'btn-copy';
