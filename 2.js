@@ -36,7 +36,7 @@ divTextarea.className = 'containt-textarea-result-data-query';
 
 const textareaResultDataQuery = document.createElement('textarea');
 textareaResultDataQuery.className = 'textarea-result-data-query';
-textareaResultDataQuery.style.width = '720px';
+textareaResultDataQuery.style.width = '940px';
 textareaResultDataQuery.style.height = '190px';
 textareaResultDataQuery.style.fontSize = '14px';
 textareaResultDataQuery.style.padding = '10px';
