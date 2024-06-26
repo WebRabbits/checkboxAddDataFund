@@ -11,6 +11,7 @@ const paySystems = document.querySelector('select[name="PaySystem"]');
 //Получаем все элементы <tr> из DOM
 const trIdBody = document.querySelectorAll('tbody>tr');
 
+//Получаем значение из блока с SQL-запросом
 const sqlText = document.querySelector('#SQLText').innerText.split('\n');
 
 //// Render Logic
