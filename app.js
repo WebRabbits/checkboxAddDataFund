@@ -12,14 +12,6 @@ const paySystems = document.querySelector('select[name="PaySystem"]');
 const trIdBody = document.querySelectorAll('tbody>tr');
 
 const sqlText = document.querySelector('#SQLText').innerText.split('\n');
-const sqlTextNewArray = sqlText.filter((el) => el != '');
-console.log(sqlTextNewArray);
-let sqlTextNewString;
-for (const item of sqlTextNewArray) {
-  console.log(item.trim());
-  sqlTextNewString += item.trim() + ' ';
-}
-console.log(sqlTextNewString.replace('undefined', ''));
 
 //// Render Logic
 //Добавляем новый стобец для чекбоксов
@@ -52,9 +44,16 @@ textareaResultDataQuery.style.fontSize = '14px';
 textareaResultDataQuery.style.padding = '10px';
 textareaResultDataQuery.style.marginBottom = '20px';
 
+const divBtn = document.createElement('div');
+divBtn.className = 'div-btn';
+
 const btnCopy = document.createElement('button');
 btnCopy.className = 'btn-copy';
 btnCopy.innerText = 'Copy Result';
+
+const btnCopySQL = document.createElement('button');
+btnCopySQL.className = 'btn-copy-sql';
+btnCopySQL.innerText = 'Copy SQL Query';
 
 const notifyBlock = document.createElement('div');
 notifyBlock.className = 'notify-block';
@@ -64,7 +63,9 @@ notifyText.className = 'notify-text';
 
 document.querySelector('.payment-requests__data > .row').prepend(divTextarea);
 divTextarea.prepend(textareaResultDataQuery);
-divTextarea.append(btnCopy);
+divTextarea.append(divBtn);
+divBtn.append(btnCopy);
+divBtn.append(btnCopySQL);
 divTextarea.append(notifyBlock);
 notifyBlock.prepend(notifyText);
 
@@ -108,7 +109,11 @@ Array.from(check).forEach((item) =>
   item.addEventListener('click', () => workCheckedElem(item, preDataProcessing))
 );
 
+//Запускаем слушатель события при нажатии на кнопку "Copy Result" - копируем значением из <textarea>
 btnCopy.addEventListener('click', copyResult);
+
+//Запускаем слушатель события при нажатии на кнопку "Copy SQL Query" - копируем значением из блока SQL-запроса в подготовленном формате для вставки в SQL
+btnCopySQL.addEventListener('click', () => sqlQueryFormater(copySQLQuery));
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -263,4 +268,39 @@ function copyNotify(isCopy) {
   setTimeout(() => {
     notifyBlock.style.opacity = '0';
   }, 2500);
+}
+
+//Форматируем строку из блока SQL-запроса в удобный формат вставки запроса в SQL
+function sqlQueryFormater() {
+  const sqlTextNewArray = sqlText.filter((el) => el != '');
+  let sqlTextNewString;
+  for (const item of sqlTextNewArray) {
+    sqlTextNewString += item.trim() + ' ';
+  }
+  const resultSQLQueryString = sqlTextNewString
+    .replace('undefined', '')
+    .replace('LIMIT 200', '\\G;')
+    .trim();
+
+  copySQLQuery(resultSQLQueryString);
+}
+
+//Функция для копирования результата подготовленного формат SQL-запроса
+function copySQLQuery(queryString) {
+  console.log(queryString);
+  navigator.clipboard
+    .writeText(queryString)
+    .then((copySQL) => {
+      if (copySQL === undefined) {
+        btnCopySQL.innerText = 'Copied!';
+        btnCopySQL.style.borderColor = '#04e85a';
+        setTimeout(() => {
+          btnCopySQL.innerText = 'Copy SQL Query';
+          btnCopySQL.style.borderColor = '#01a9b6';
+        }, 1000);
+      }
+    })
+    .catch((error) => {
+      console.log(`Error>>> ${error}`);
+    });
 }

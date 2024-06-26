@@ -3892,6 +3892,96 @@
         </div>
       </div>
     </div>
+    <style>
+      .containt-textarea-result-data-query {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .containt-textarea-result-data-query .btn-copy {
+        display: inline-block;
+        width: 107px;
+        height: auto;
+        margin-left: 15px;
+        border: 1px solid #01a9b6;
+        font-size: 14px;
+        padding: 6px 14px;
+        background: none;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: 0.5s;
+      }
+
+      .containt-textarea-result-data-query .btn-copy-sql {
+        display: inline-block;
+        width: 137px;
+        height: auto;
+        margin-left: 15px;
+        border: 1px solid #01a9b6;
+        font-size: 14px;
+        padding: 6px 14px;
+        background: none;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: 0.5s;
+      }
+
+      .containt-textarea-result-data-query .btn-copy:hover {
+        border-color: #1fd8d3;
+        transition: 0.5s;
+      }
+
+      .containt-textarea-result-data-query .btn-copy-sql:hover {
+        border-color: #1fd8d3;
+        transition: 0.5s;
+      }
+
+      .element-active-empty {
+        outline: none;
+        box-shadow: 0 0 0 1px red;
+        border-color: red;
+        transition: 0.5s;
+      }
+
+      .element-active-done {
+        outline: none;
+        box-shadow: 0 0 0 1px rgb(42, 175, 64);
+        border-color: rgb(42, 175, 64);
+        transition: 0.5s;
+      }
+
+      .notify-block {
+        width: auto;
+        height: auto;
+        margin: 5px;
+        border-radius: 3px;
+        text-align: center;
+        opacity: 0;
+        transition: 0.5s;
+      }
+
+      .notify-block .notify-text {
+        color: #fff;
+        display: block;
+        padding: 2px 5px;
+        width: 135px;
+      }
+
+      .div-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .div-btn :first-child {
+        margin-bottom: 5px;
+      }
+    </style>
     <script src="app.js"></script>
   </body>
   <rq-implicit-test-rule-widget
