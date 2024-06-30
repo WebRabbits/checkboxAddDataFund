@@ -147,7 +147,6 @@ function checkedAllInput() {
       el.splice(0, 1, false);
       textareaResultDataQuery.innerHTML = '';
     });
-    console.log(arrChecboxText);
   }
 }
 
