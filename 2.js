@@ -15,10 +15,18 @@ const trIdBody = document.querySelectorAll('tbody>tr');
 const sqlText = document.querySelector('#SQLText').innerText.split('\n');
 
 //// Render Logic
-//Добавляем новый стобец для чекбоксов
+//Добавляем новый стобец для чекбоксов. Добавляем чекбокс для добавления всенх запросов с старницы в блок <textarea>
 const thColumn = document.createElement('th');
 thColumn.innerText = 'Select a request';
+const inputAllCheck = document.createElement('input');
+inputAllCheck.className = 'inputAllCheck';
+inputAllCheck.type = 'checkbox';
+inputAllCheck.value = '';
+inputAllCheck.title = 'Отметить/Удалить все запросы';
+inputAllCheck.style.cursor = 'pointer';
+
 document.querySelector('thead>tr').prepend(thColumn);
+thColumn.append(inputAllCheck);
 
 //Перебираем все элементы из HTMLCollection по <tr> тегам. Создаёс <input/> теги у каждого блока с значениями полученных данных по запрсоам
 for (const resultElem of tableQuery.children) {
@@ -110,6 +118,11 @@ Array.from(check).forEach((item) =>
   item.addEventListener('click', () => workCheckedElem(item, preDataProcessing))
 );
 
+//Запускаем слушатель события при нажатии на чекбокс "Select a request", при котором будут отмечены все чекбоксы увсех запросов на странице
+inputAllCheck.addEventListener('click', () =>
+  checkedAllInput(preDataProcessing)
+);
+
 //Запускаем слушатель события при нажатии на кнопку "Copy Result" - копируем значением из <textarea>
 btnCopy.addEventListener('click', copyResult);
 
@@ -119,6 +132,25 @@ btnCopySQL.addEventListener('click', () => sqlQueryFormater(copySQLQuery));
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 //// Main logic
+
+//Функция для добавления всех запросов в <textarea>. У всех запросов проставляется активно отмеченный чекбокс
+function checkedAllInput() {
+  if (inputAllCheck.checked) {
+    Array.from(check).forEach((el) => (el.checked = true));
+    arrChecboxText.forEach((el) => {
+      el.splice(0, 1, true);
+      preDataProcessing(el);
+    });
+  } else {
+    Array.from(check).forEach((el) => (el.checked = false));
+    arrChecboxText.forEach((el) => {
+      el.splice(0, 1, false);
+      textareaResultDataQuery.innerHTML = '';
+    });
+    console.log(arrChecboxText);
+  }
+}
+
 //Функция с обработкой проставления/снятия чекбокса в input. Изменяет у полученных отмеченных элементов значение первого элемента массива на "true"
 function workCheckedElem(item, preDataProcessing) {
   console.log(item);
@@ -127,6 +159,7 @@ function workCheckedElem(item, preDataProcessing) {
       if (item.id == ind) {
         el.splice(0, 1, true);
         if (el[0] === true) {
+          // console.log(el);
           preDataProcessing(el);
         }
       }
