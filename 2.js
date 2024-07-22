@@ -33,13 +33,18 @@ for (const resultElem of tableQuery.children) {
   // const tdCheckbox = document.createElement('td');
   // tdCheckbox.className = 'tdCheckbox';
   // tdCheckbox.style.textAlign = 'center';
+  const tdInput = document.createElement('td');
+  tdInput.className = 'td-Input';
+  tdInput.style.textAlign = 'center';
+  tdInput.style.cursor = 'pointer';
 
   const inputCheck = document.createElement('input');
   inputCheck.className = 'inputCheck';
   inputCheck.type = 'checkbox';
   inputCheck.value = '';
   inputCheck.style.cursor = 'pointer';
-  resultElem.prepend(inputCheck);
+  resultElem.prepend(tdInput);
+  tdInput.prepend(inputCheck);
 }
 
 const divTextarea = document.createElement('div');
@@ -97,7 +102,11 @@ Array.from(check).forEach((elCheck, elInd) => {
 });
 
 //Получаем массив всех input элементов и маппим получение всех внутренних дочерних элементов <td> из <tr> таблицы
-let arrCheckbox = Array.from(check).map((el) => el.parentElement.children);
+let arrCheckbox = Array.from(check).map(
+  (el) => el.parentElement.parentElement.children
+);
+console.log(arrCheckbox);
+// el.parentElement.children
 
 //Получаем массив, в который маппим все значения, которые содержаться отдельные массивы всех элементов с страницы из таблицы
 let arrChecboxText = arrCheckbox.map((el) =>
@@ -106,7 +115,7 @@ let arrChecboxText = arrCheckbox.map((el) =>
 
 //При помощи метода splice - маппим флаг с значением false 0-ым элементом из input
 Array.from(arrChecboxText).map((el) =>
-  el.splice(0, 1, arrCheckbox[0][0].checked)
+  el.splice(0, 1, arrCheckbox[0][0].children[0].checked)
 );
 console.log(arrChecboxText);
 
